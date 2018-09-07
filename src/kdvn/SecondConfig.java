@@ -1,45 +1,45 @@
-/*    */ package kdvn;
-/*    */ 
-/*    */ import java.io.File;
-/*    */ import java.io.IOException;
-/*    */ import org.bukkit.configuration.file.FileConfiguration;
-/*    */ import org.bukkit.configuration.file.YamlConfiguration;
-/*    */ 
-/*    */ public class SecondConfig
-/*    */ {
-/*    */   private static final String fileName = "data.yml";
-/* 11 */   private static File file = null;
-/* 12 */   private static FileConfiguration secondConfig = null;
-/*    */   
-/*    */   public static void setUpConfig() {
-/* 15 */     file = new File(Main.plugin.getDataFolder(), "data.yml");
-/* 16 */     if (!file.exists()) {
-/*    */       try {
-/* 18 */         file.createNewFile();
-/*    */       }
-/*    */       catch (IOException e) {
-/* 21 */         e.printStackTrace();
-/*    */       }
-/*    */     }
-/* 24 */     secondConfig = YamlConfiguration.loadConfiguration(file);
-/*    */   }
-/*    */   
-/*    */   public static void reloadConfig() {
-/* 28 */     secondConfig = YamlConfiguration.loadConfiguration(file);
-/*    */   }
-/*    */   
-/*    */   public static void saveConfig() {
-/*    */     try {
-/* 33 */       secondConfig.save(file);
-/*    */     } catch (IOException e) {
-/* 35 */       e.printStackTrace();
-/*    */     }
-/*    */   }
-/*    */   
-/*    */   public static FileConfiguration getConfig() {
-/* 40 */     if (secondConfig == null) {
-/* 41 */       setUpConfig();
-/*    */     }
-/* 43 */     return secondConfig;
-/*    */   }
-/*    */ }
+package kdvn;
+
+import java.io.IOException;
+
+public class SecondConfig
+{
+  private static final String fileName = "data.yml";
+  
+  public SecondConfig() {}
+  
+  private static java.io.File file = null;
+  private static org.bukkit.configuration.file.FileConfiguration secondConfig = null;
+  
+  public static void setUpConfig() {
+    file = new java.io.File(Main.plugin.getDataFolder(), "data.yml");
+    if (!file.exists()) {
+      try {
+        file.createNewFile();
+      }
+      catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+    secondConfig = org.bukkit.configuration.file.YamlConfiguration.loadConfiguration(file);
+  }
+  
+  public static void reloadConfig() {
+    secondConfig = org.bukkit.configuration.file.YamlConfiguration.loadConfiguration(file);
+  }
+  
+  public static void saveConfig() {
+    try {
+      secondConfig.save(file);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public static org.bukkit.configuration.file.FileConfiguration getConfig() {
+    if (secondConfig == null) {
+      setUpConfig();
+    }
+    return secondConfig;
+  }
+}
